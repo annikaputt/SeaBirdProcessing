@@ -9,7 +9,9 @@
 # A Putt
 ############################
 
-########## seabirdfunc ##########
+##########################
+# seabirdfunc
+##########################
 
 # Create a function to process incoming .cnv files
 # Notes: skip=232 indicates to start reading at line 233 (there is a lot of header in the file)
@@ -50,7 +52,9 @@ seabirdfunc <- function(station,datafile) {
   return(wholecast)
 }
 
-########## runstationsfunc ##########
+##########################
+# runstationsfunc
+##########################
 
 # Create a function to loop over the seabirdfunc for each station in the project
 # This will create a large data file with all the data from each station stored in 1 frame (all dates)
@@ -73,25 +77,16 @@ runstationsfunc <- function(stationname) {
   return(seabird)
 }
 
-#########################
+##########################
+# Run Through Sub-folders
+##########################
+
 # Run all stations
 # Returns a data frame of all the year's scans, with a few extra columns added containing date, station, and poriton of the cast
 # !!!!! I should really streamline this and also add code to write the data frames so that the code doesn't need to be re-run each time.
-S1data <- runstationsfunc("S1")
-# S2data <- runstationsfunc("S2")
-# S3data <- runstationsfunc("S3")
-# S4data <- runstationsfunc("S4")
-# S5data <- runstationsfunc("S5")
-# S6data <- runstationsfunc("S6")
-# A1data <- runstationsfunc("A1")
-# A2data <- runstationsfunc("A2")
-# C1data <- runstationsfunc("C1")
-# C2data <- runstationsfunc("C2")
-# C3data <- runstationsfunc("C3")
-# C4data <- runstationsfunc("C4")
-# C5data <- runstationsfunc("C5")
-# C6data <- runstationsfunc("C6")
-# C7data <- runstationsfunc("C7")
-# C8data <- runstationsfunc("C8")
-# C9data <- runstationsfunc("C9")
-# C10data <- runstationsfunc("C10")
+StationList <- c("S1","S2","S3","S4","S5","S6","A1","A2","A4","C1","C2","C3","C4","C5","C6","C7","C7","C8","C9","C10")
+for (i in 1:length(StationList)) {
+  name <- sprintf("%sdata.csv",StationList[i])
+  stationdata <- runstationsfunc(StationList[i])
+  write.csv(stationdata,sprintf("StationDataCSV/%sdata.csv",StationList[i]),row.names=FALSE)
+}

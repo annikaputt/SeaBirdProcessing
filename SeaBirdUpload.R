@@ -80,7 +80,7 @@ runstationsfunc <- function(stationname) {
 
 # Run all stations through the two nestled functions
 # Returns a data frame of all the year's scans, with a few extra columns added containing date, station, and poriton of the cast
-StationList <- c("S1","S2","S3","S4","S5","S6","A1","A2","A4","C1","C2","C3","C4","C5","C6","C7","C7","C8","C9","C10")
+StationList <- c("S01","S02","S03","S04","S05","S06","A01","A02","A04","C01","C02","C03","C04","C05","C06","C07","C08","C09","C10")
 for (i in 1:length(StationList)) {
   name <- sprintf("%sdata.csv",StationList[i])
   stationdata <- runstationsfunc(StationList[i])
